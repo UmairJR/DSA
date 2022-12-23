@@ -1,0 +1,32 @@
+class Solution {
+    public void swap(int ma, int mi)
+    {
+        int temp = ma;
+        ma = mi;
+        mi = temp;
+    }
+    
+    public int maxProduct(int[] nums) {
+        int n = nums.length;
+        int ma = nums[0];
+        int mi = nums[0];
+        int res = nums[0];
+
+        for(int i=1;i<n;i++)
+        {
+            if(nums[i]<0)
+            {
+                // swap(ma,mi);
+                int temp = ma;
+                ma = mi;
+                mi = temp;
+            }
+            ma = Math.max(nums[i],ma * nums[i]);
+            mi = Math.min(nums[i],mi * nums[i]);
+            res = Math.max(res,ma);
+
+        }
+        return res;
+
+    }
+}
