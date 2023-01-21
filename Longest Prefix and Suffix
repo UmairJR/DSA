@@ -1,0 +1,19 @@
+class Solution {
+    int lps(String s) {
+        int len = 0, i = 1;
+        while(i < s.length())
+        {
+            if(s.charAt(len)==s.charAt(i))
+            {
+                i++;
+                len++;
+            }
+            else
+            {
+                i = i - len + 1;
+                len = 0;
+            }
+        }
+        return len;
+    }
+}
