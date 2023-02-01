@@ -1,0 +1,55 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        boolean m1 = true, m2 = true, m3 = true;
+        int n = word.length();
+
+        for(int i = 0;i < n;i++)
+        {
+            if(!Character.isUpperCase(word.charAt(i)))
+            {
+                m1 = false;
+                break;
+            }
+        }
+        if(m1)
+        {
+            return true;
+        }
+        for(int i = 0;i < n;i++)
+        {
+            if(!Character.isLowerCase(word.charAt(i)))
+            {
+                m2 = false;
+                break;
+            }
+        }
+        if(m2)
+        {
+            return true;
+        }
+        
+        if(!Character.isUpperCase(word.charAt(0)))
+        {
+            m3 = false;
+        }
+        if(m3)
+        {
+            for(int i = 1; i < n;i++)
+            {
+                if(!Character.isLowerCase(word.charAt(i)))
+                {
+                    m3 = false;
+                    break;
+                }
+
+            }
+        }
+            
+        
+        if(m3)
+        {
+            return true;
+        }
+        return false;
+    }
+}
