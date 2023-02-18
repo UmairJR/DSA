@@ -1,0 +1,132 @@
+import java.util.*;
+
+public class LL {
+    
+    Node head;
+    private int size;
+    
+    
+    LL(){
+      this.size = 0;
+      
+    }
+  
+    //Make Node
+    class Node{
+      String data;
+      Node next;
+      Node(String data)
+      {
+        this.data = data;
+        this.next = null;
+        size++;
+      }
+    }
+    
+    //Insert at first
+    public void addFirst(String data)
+    {
+      Node newNode = new Node(data);
+      if(head == null)
+      {
+        head= newNode;
+        return;
+      }
+      
+      newNode.next = head;
+      head = newNode;
+    }
+    
+    //Insert at Last
+    public void addLast(String data)
+    {
+      Node newNode = new Node(data);
+      Node currNode = head;
+      while(currNode.next != null)
+      {
+        currNode = currNode.next;
+      }
+      currNode.next = newNode;
+      
+    }
+    
+    //Delete first
+    public void deleteFirst()
+    {
+      if(head == null)
+      {
+        System.out.print("List is Empty!!");
+        return;
+      }
+      head = head.next;
+      size--;
+    }
+    
+    //Delete Last
+    public void deleteLast()
+    {
+      Node secondLast = head;
+      Node last = head.next;
+      if(head == null)
+      {
+        System.out.print("List is Empty!!");
+        return;
+      }
+      size--;
+      if(head.next == null)
+      {
+        head = null;
+        return;
+      }
+      while(last.next != null)
+      {
+        last = last.next;
+        secondLast = secondLast.next;
+      }
+      secondLast.next = null;
+    }
+    
+    //Print list
+    public void printList()
+    {
+      if(head == null)
+      {
+        System.out.print("List is Empty!!");
+      }
+      Node currNode = head;
+      
+      while(currNode != null)
+      {
+        
+        System.out.print(currNode.data + " -> ");
+        currNode = currNode.next;
+        
+      }
+      System.out.print("Null");
+      
+    }
+    
+    //Return size
+    public int getSize()
+    {
+      return size;
+    }
+
+    
+    public static void main(String[] args) {
+      LL list = new LL();
+      list.addFirst("Prem");
+      list.addFirst("Aryan");
+      list.addFirst("Umair");
+      list.addLast("Rih");
+      list.printList();
+      System.out.println();
+      list.deleteFirst();
+      list.printList();
+      System.out.println();
+      list.deleteLast();
+      list.printList();
+      System.out.println();
+      System.out.println("Size: "+list.getSize());
+  }
+}
