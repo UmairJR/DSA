@@ -1,0 +1,13 @@
+class Solution {
+    ArrayList<Integer> valueEqualToIndex(int arr[], int n) {
+    ArrayList<Integer> list = new ArrayList<>();    
+        for(int i = 1; i <= n; i++)
+        {
+            if(i == arr[i - 1])
+            {
+                list.add(i);
+            }
+        }
+        return list;
+    }
+}
