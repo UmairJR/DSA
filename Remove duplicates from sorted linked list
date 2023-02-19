@@ -1,0 +1,25 @@
+class GfG
+{
+    
+    Node removeDuplicates(Node head)
+    {
+        Node prev = head;
+        Node curr = head.next;
+	    while(curr != null)
+	    {
+	        if(prev.data == curr.data)
+	        {
+	            prev.next = curr.next;
+                curr = curr.next;
+	        }
+	        else{
+	            prev = curr;
+	       curr = curr.next;
+	        }
+	       
+	        
+	        
+	    }
+	    return head;
+    }
+}
