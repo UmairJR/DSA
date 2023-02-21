@@ -1,0 +1,51 @@
+class Solution
+{
+    
+    public static Node detectLoop(Node head)
+    {
+        Node fast = head;
+        Node slow = head;
+        while(fast != null && fast.next != null)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+            if(slow == fast)
+            {
+                
+                return slow;
+            }
+        }
+        return null;
+    }
+    
+    public static Node getStart(Node head)
+    {
+        Node meet = detectLoop(head);
+        if(meet == null)
+        {
+            return null;
+        }
+        Node start = head;
+        while(start != meet)
+        {
+            start = start.next;
+            meet = meet.next;
+        }
+        return start;
+    }
+    
+    public static void removeLoop(Node head){
+        Node start = getStart(head);
+        
+        Node prev = start;
+        if(start != null)
+        {
+            while(prev.next != start)
+            {
+                prev = prev.next;
+            }
+            prev.next = null;
+        }
+        
+    }
+}
