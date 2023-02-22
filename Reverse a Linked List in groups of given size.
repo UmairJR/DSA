@@ -1,0 +1,25 @@
+class Solution
+{
+    public static Node reverse(Node node, int k)
+    {
+        Node prev = null;
+        Node curr = node;
+        Node next = null;
+        int c = 0;
+        while(curr != null && c < k)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            c++;
+        }
+        if(next != null)
+        {
+        //use recursion, call function with the next value.
+            node.next = reverse(next, k);
+        }
+        return prev;
+        
+    }
+}
