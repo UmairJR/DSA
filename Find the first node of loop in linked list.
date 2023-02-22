@@ -1,0 +1,33 @@
+class Solution {
+    
+    public static int findFirstNode(Node head){
+        Node slow = head;
+        Node fast = head;
+        
+        while(fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast)
+            {
+                break;
+            }
+        }
+        Node meet = head;
+        if(slow == fast)
+        {
+            meet = slow;
+        }
+        else{
+            return -1;
+        }
+        Node start = head;
+        while(start != meet)
+        {
+            start = start.next;
+            meet = meet.next;
+        }
+        return start.data;
+        
+    }
+}
