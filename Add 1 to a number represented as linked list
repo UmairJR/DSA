@@ -1,0 +1,74 @@
+// Algo
+
+// 1.reverse the list
+
+// 2.add one to the reversed list
+
+// 3.reverse the reversed list
+
+// 4.if carry is 1 add this in front of list
+
+
+
+class Solution
+{
+    public static Node addOne(Node head) 
+    { 
+        if(head == null)
+        {
+            return null;
+        }
+        
+        Node curr = head;
+        Node prev = null;
+        
+        while(curr != null)
+        {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            
+        }
+        head = prev;
+        int carry = 0;
+        Node temp = head;
+        int num = temp.data + 1;
+        int rem = num % 10;
+        carry = num / 10;
+        temp.data = rem;
+        temp = temp.next;
+        while(temp != null)
+        {
+            num = temp.data + carry;
+            rem = num % 10;
+            carry = num / 10;
+            temp.data = rem;
+            temp = temp.next;
+        }
+        
+        curr = head;
+        prev = null;
+        
+        while(curr != null)
+        {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            
+        } 
+        head = prev;
+        
+        if(carry == 1)
+        {
+            Node nodeOne = new Node(1);
+            nodeOne.next = head;
+            head = nodeOne;
+            
+        }
+
+        return head;
+        
+    }
+}
