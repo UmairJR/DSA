@@ -1,0 +1,28 @@
+public class Solution {
+
+	public static Node<Integer> sortedDll(Node<Integer> head, int k) {
+		if(head == null || head.next == null)
+        return head;
+ 
+    
+    for(Node i = head.next; i != null; i = i.next) {
+        Node j = i;
+        while(j.prev != null && (Integer)j.data < (Integer)j.prev.data) {
+            Node temp = j.prev.prev;
+            Node temp2 = j.prev;
+            Node temp3 = j.next;
+            j.prev.next = temp3;
+            j.prev.prev = j;
+            j.prev = temp;
+            j.next = temp2;
+            if(temp != null)
+                temp.next = j;
+            if(temp3 != null)
+                temp3.prev = temp2;
+        }
+        if(j.prev == null)
+            head = j;
+    }
+    return head;
+}
+}
