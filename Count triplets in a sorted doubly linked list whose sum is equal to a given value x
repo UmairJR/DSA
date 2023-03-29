@@ -1,0 +1,29 @@
+public class Solution {
+    public static int countTriplets(DLLNode head,int x){
+        DLLNode first, second, third;
+        int countTriplet = 0;
+ 
+   
+            for (first = head; first != null; first = first.next)
+            {
+                for (second = first.next; second != null; second = second.next)
+                {
+                    for (third = second.next; third != null; third = third.next)
+                    {
+                        int v1 = (Integer)first.data;
+                        int v2 = (Integer)second.data;
+                        int v3 = (Integer)third.data;
+                        
+                        if ((v1 + v2 + v3) == x)
+                        {
+                            countTriplet++;
+                        }
+                    }
+                        
+                }
+                    
+            }
+  
+            return countTriplet;
+    }
+}
