@@ -1,0 +1,32 @@
+public class Solution {
+
+    public static boolean findPair(Node<Integer> head, int k) {
+        Node ptr1 = head;
+        Node ptr2 = head;
+
+        while(ptr2.next!=null)
+        {
+            ptr2 = ptr2.next;
+        }
+        boolean found = false;
+        while(ptr1 != ptr2 && ptr2.next != ptr1)
+        {
+            int x = (Integer)ptr1.data;
+            int y = (Integer)ptr2.data;
+            if((x + y) == k)
+                {
+                    found = true;
+                    ptr1 = ptr1.next;
+                    ptr2 = ptr2.prev;
+                }
+            else{
+                if((x + y) < k)
+                {
+                    ptr1 = ptr1.next;
+                }
+                else{
+                    ptr2 = ptr2.prev;
+                }
+            }
+        }
+     return found;
