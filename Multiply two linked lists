@@ -1,0 +1,20 @@
+class GfG{
+  /*You are required to complete this method */
+   public long multiplyTwoLists(Node l1,Node l2){
+        Node list1 = l1;
+        Node list2 = l2;
+        long mod = 1000000007;
+        long num1 = 0, num2 = 0;
+        while(list1 != null)
+        {
+            num1 = ((num1*10) + (list1.data)) % mod;
+            list1 = list1.next;
+        }
+        while(list2 != null)
+        {
+            num2 = ((num2*10) + (list2.data)) % mod;
+            list2 = list2.next;
+        }
+        return ((num1 * num2) % mod);
+   }
+}
