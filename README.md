@@ -8,4 +8,6 @@
 - Leetcode
 - GeekforGeeks
 - InterviewBit
+- CodingNinjas
+- HackersRank
 
