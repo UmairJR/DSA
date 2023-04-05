@@ -1,0 +1,24 @@
+class Solution{
+    //Function to return list containing elements of right view of binary tree.
+    void calculate(Node node, ArrayList<Integer> list, int level)
+    {
+        if(node == null){
+            return;
+        }
+        if(level == list.size()){
+            list.add(node.data);
+        }
+        calculate(node.right, list, level + 1);
+        calculate(node.left, list, level + 1);
+    }
+    ArrayList<Integer> rightView(Node node) {
+        //add code here
+        ArrayList<Integer> arr = new ArrayList<>();
+        if(node == null){
+            return arr;
+        }
+        calculate(node, arr, 0);
+        return arr;
+   
+    }
+}
