@@ -1,0 +1,39 @@
+class Pair
+{
+   Node node;
+   int col;
+   public Pair(Node node, int col){
+       this.node = node;
+       this.col = col;
+   }
+}
+
+class Solution
+{
+    //Function to return a list containing the bottom view of the given tree.
+    public ArrayList <Integer> bottomView(Node root)
+    {
+        TreeMap<Integer, Integer> tm = new TreeMap<>();
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(root, 0));
+        while(!q.isEmpty())
+        {
+            Pair curr = q.poll();
+            Node n = curr.node;
+            int col = curr.col;
+            tm.put(col, n.data);
+            if(n.left != null){
+                q.add(new Pair(n.left, col - 1));
+            }
+            if(n.right != null){
+                q.add(new Pair(n.right, col + 1));
+            }
+        }
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int value : tm.values())
+        {
+            arr.add(value);
+        }
+        return arr;
+    }
+}
