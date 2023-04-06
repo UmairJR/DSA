@@ -1,0 +1,41 @@
+class Cell{
+        Node node;
+        int col;
+        public Cell(Node node, int col){
+            this.node = node;
+            this.col = col;
+        }
+        
+    }
+    
+class Solution
+{
+    static ArrayList<Integer> topView(Node root)
+    {
+        TreeMap<Integer, Integer> tm = new TreeMap<>();
+        Queue<Cell> q = new LinkedList<>();
+        q.add(new Cell(root, 0));
+        while(!q.isEmpty()){
+            Cell p = q.poll();
+            Node curr = p.node;
+            int col = p.col;
+            
+            if(!tm.containsKey(col)){
+                tm.put(col, curr.data);
+            }
+            if(curr.left != null){
+                q.add(new Cell(curr.left, col - 1));
+            }
+            if(curr.right != null){
+                q.add(new Cell(curr.right, col + 1));
+            }
+        }
+        ArrayList<Integer> arr = new ArrayList<>();
+        
+        for(int value : tm.values()){
+            arr.add(value);
+        }
+        return arr;
+    
+    }
+}
