@@ -1,0 +1,30 @@
+class Solution
+{
+    //Function to convert binary tree to doubly linked list and return it.
+    Node bToDLL(Node root)
+    {
+	    ArrayList<Node> res = new ArrayList<>();
+	    inOrder(root, res);
+	    
+	    Node head = res.get(0);
+	    Node travel = head;
+	    for(int i = 1; i < res.size(); i++)
+	    {
+	        Node curr = res.get(i);
+	        travel.right = curr;
+	        curr.left = travel;
+	        travel = curr;
+	    }
+	    
+	    return head;
+	
+    }
+    void inOrder(Node node, ArrayList<Node> arr){
+        
+        if(node == null) return;
+        inOrder(node.left, arr);
+        arr.add(node);
+        inOrder(node.right, arr);
+    }
+   
+}
