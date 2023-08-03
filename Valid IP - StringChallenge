@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+class StringChallenge {
+  
+  public static boolean lastDigit(String str){
+    if (str.length() < 3) {
+        return false;
+    }
+    int firstDigit = Integer.parseInt(String.valueOf(str.charAt(0)));
+    int secondDigit = Integer.parseInt(String.valueOf(str.charAt(1)));
+    int thirdDigit = Integer.parseInt(String.valueOf(str.charAt(2)));
+    
+    if(thirdDigit <= firstDigit || thirdDigit <= secondDigit){
+      return false;
+    }
+    return true;
+    
+  }
+  
+  public static int addDigits(String str){
+    int num = 0;
+    for(int i = 0; i < str.length(); i++){
+      num += Integer.parseInt(String.valueOf(str.charAt(i)));
+    }
+    return num;
+  }
+    
+    public static boolean checkSets(String str){
+      String[] sets = str.split("\\.");
+      int setOneEven = addDigits(sets[0]);
+      int setTwoOdd = addDigits(sets[1]);
+      boolean setOne = lastDigit(sets[0]);
+      boolean setTwo = lastDigit(sets[1]);
+      boolean setThree = lastDigit(sets[2]);
+      
+      if(sets.length != 3){
+        return false;
+      }
+      for(String set:sets){
+         if (set.length() != 3) {
+        return false;
+    }
+    for (int i = 0; i < set.length(); i++) {
+        int digit = Integer.parseInt(String.valueOf(set.charAt(i)));
+        if (digit < 0 || digit > 9) {
+            return false;
+        }
+    }
+      }
+      
+      if(setOneEven % 2 != 0){
+        return false;
+      }
+      if(setTwoOdd % 2 != 1){
+        return false;
+      }
+      
+      if(!setOne || !setTwo || !setThree){
+        return false;
+      }
+      return true;
+    }
+       
+    public static void main(String[] args) {
+    	Scanner sc = new Scanner(System.in);
+    	String s = sc.next();
+    	boolean isValid = true;
+    	if(checkSets(s)){
+    	  isValid = true;
+    	}
+    	else{
+    	  isValid = false;
+    	}
+    	System.out.print(isValid);
+    }
+}
