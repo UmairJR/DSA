@@ -1,0 +1,23 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int h_len = haystack.length();
+        int n_len = needle.length();
+        int k = 0;
+        if(h_len < n_len){
+            return -1;
+        }
+        for(int i = 0; i < h_len; i++){
+            if(haystack.charAt(i) == needle.charAt(k)){
+                k++;
+            }
+            else{
+                i = i - k; //Goto index ahead of previous start index  
+                k = 0;
+            }
+            if(k == n_len){
+                return i-k+1; //First index of occurrence in Haystack
+            }
+        }
+        return -1;
+    }
+}
