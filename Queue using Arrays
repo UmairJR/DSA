@@ -1,0 +1,52 @@
+public class Queue {
+    private int rear, front;
+    private int[] queue;
+    Queue(int size){
+        this.rear = -1;
+        this.front = -1;
+        this.queue = new int[size];
+    }
+    boolean isEmpty(){
+        if(rear == front){
+            return true;
+        }
+        return false;
+    }
+    boolean isFull(){
+        if(rear == queue.length - 1){
+            return true;
+        }
+        return false;
+    }
+    void enqueue(int value){
+        if(isFull()){
+            System.out.println("Queue is full!");
+        }
+        else{
+            if(front == rear){
+                front = -1;
+                rear = -1;
+            }
+            rear++;
+            queue[rear] = value;
+        }
+    }
+    void dequeue(){
+        if(isEmpty()){
+            System.out.println("Queue is Empty!");
+        }
+        else{
+            front++;
+        }
+    }
+    void display(){
+        if(isEmpty()){
+            System.out.println("Queue is Empty!");
+        }
+        else{
+            for(int i = front+1; i <= rear; i++){
+                System.out.println(queue[i] + " ");
+            }
+        }
+    }
+}
