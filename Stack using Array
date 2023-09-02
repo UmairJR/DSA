@@ -1,0 +1,62 @@
+
+public class Stack {
+    private int top;
+    private int[] stack;
+    private boolean isEmpty(){
+        if(top == -1){
+            return true;
+        }
+        return false;
+    }
+    private boolean isFull(){
+        if(top == stack.length - 1){
+            return true;
+        }
+        return false;
+    }
+
+    void push(int val){
+        if(isFull()){
+            System.out.print("Stack Overflow");
+            return;
+        }
+        else{
+            top++;
+            stack[top] = val;
+        }
+    }
+    void pop(){
+        if(isEmpty()){
+            System.out.print("Stack Underflow");
+            return;
+        }
+        else{
+            top--;
+        }
+    }
+    void peek(){
+        if(isEmpty()){
+            System.out.print("Stack is Empty!");
+            return;
+        }
+        System.out.println(stack[top]);
+    }
+    void display(){
+        if(isEmpty()) {
+            System.out.print("Stack is Empty!");
+            return;
+        }
+        else{
+            for(int i = top; i >= 0; i--){
+                System.out.print(stack[i] + "  ");
+            }
+        }
+    }
+    Stack(int size){
+        this.top = -1;
+        this.stack = new int[size];
+    }
+
+
+
+}
