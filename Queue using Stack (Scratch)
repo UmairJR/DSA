@@ -1,0 +1,67 @@
+public class QueueUsingStack {
+    private Stack st1;
+    private Stack st2;
+
+    QueueUsingStack(int size){
+        this.st1 = new Stack(size);
+        this.st2 = new Stack(size);
+    }
+
+    void enqueue(int value){
+        if (st1.isFull()) {
+            System.out.println("Queue is Full!");
+        } else {
+            if(!st2.isEmpty()){
+                while (!st2.isEmpty()) {
+                    int pop = st2.pop();
+                    st1.push(pop);
+                }
+            }
+            st1.push(value);
+        }
+    }
+    void dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is Empty!");
+        } else {
+            if (st2.isEmpty() && !st1.isEmpty()) {
+                while (!st1.isEmpty()) {
+                    int pop = st1.pop();
+                    st2.push(pop);
+                }
+            }
+            st2.pop(); // Dequeue from st2
+        }
+    }
+    boolean isEmpty(){
+        return st1.isEmpty() && st2.isEmpty();
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is Empty!");
+            return -1;
+        } else {
+            if (st2.isEmpty()) {
+                while (!st1.isEmpty()) {
+                    int pop = st1.pop();
+                    st2.push(pop);
+                }
+            }
+            return st2.peek();
+        }
+    }
+    void display() {
+        if (isEmpty()) {
+            System.out.println("Queue is Empty!");
+        } else {
+            if (st2.isEmpty()) {
+                while (!st1.isEmpty()) {
+                    int pop = st1.pop();
+                    st2.push(pop);
+                }
+            }
+            st2.display();
+        }
+    }
+}
