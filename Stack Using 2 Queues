@@ -1,0 +1,52 @@
+public class StackUsingQueues {
+    private Queue q1;
+    private Queue q2;
+    StackUsingQueues(int size){
+        this.q1 = new Queue(size);
+        this.q2 = new Queue(size);
+    }
+
+    void push(int value){
+        if(q1.isFull()){
+            System.out.print("Stack OverFlow!");
+            return;
+        }
+        else{
+            q2.enqueue(value);
+            while(!q1.isEmpty()){
+                q2.enqueue(q1.dequeue());
+            }
+            while(!q2.isEmpty()){
+                q1.enqueue(q2.dequeue());
+            }
+        }
+    }
+
+    void pop(){
+        if(q1.isEmpty()){
+            System.out.print("Stack UnderFlow!");
+            return;
+        }
+        else{
+            q1.dequeue();
+        }
+    }
+    void peek(){
+        if(q1.isEmpty()){
+            System.out.print("Stack UnderFlow!");
+            return;
+        }
+        else{
+            System.out.println(q1.top());
+        }
+    }
+    void display(){
+        if(q1.isEmpty()){
+            System.out.print("Stack UnderFlow!");
+            return;
+        }
+        else{
+            q1.display();
+        }
+    }
+}
