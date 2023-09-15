@@ -1,0 +1,50 @@
+import java.util.Arrays;
+
+public class Main {
+
+    static void swap(int[] arr, int a, int b) {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    static void print(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            System.out.println(arr[i] + " ");
+        }
+    }
+
+    static void bubbleSort(int[] arr, int start, int end, boolean ascending) {
+        int s = start;
+        int e = end;
+        int mid = s;
+        for (int i = s; i < e; i++) {
+            for (int j = s; j < e + mid - i - 1; j++) {
+                if(ascending){
+                    if(arr[j] > arr[j + 1]){
+                        swap(arr, j, j + 1);
+                    }
+                }
+                else{
+                    if(arr[j] < arr[j + 1]){
+                        swap(arr, j, j + 1);
+                    }
+                }
+
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{5,4,3,2,1, 1,2,3,4,5};
+        int n = arr.length;
+        int mid = 5;
+
+
+        bubbleSort(arr, 0, mid, true);
+        bubbleSort(arr, mid, n, false);
+
+        print(arr);
+    }
+}
