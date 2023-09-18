@@ -1,0 +1,81 @@
+public class QuickSortMedian {
+    private final int[] arr;
+    QuickSortMedian(int[] arr){
+        this.arr = arr;
+    }
+
+    void swap(int[] arr, int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    int threeMedian(int[] arr, int s, int m, int e){
+        int max = Math.max(Math.max(s, m), e);
+        int min = Math.min(Math.min(s, m), e);
+        int median =  s + m + e - max - min;
+        return median;
+    }
+    int partition(int[] arr, int s, int e){
+
+        int m = (s + e) / 2;
+        int pivotIndex = threeMedian(arr, s, m, e);
+        int pivot = arr[pivotIndex];
+        int count = 0;
+//        int pivotIndex = 0;
+//        for(int i = s ; i <= e; i++){
+//            if(arr[i] == pivot){
+//                pivotIndex = i;
+//                break;
+//            }
+//        }
+        for(int i = s ; i <= e; i++){
+            if(arr[i] < pivot){
+                count++;
+            }
+        }
+        int newIndex = s + count;
+        swap(arr, pivotIndex, newIndex);
+        int i = s, j = e;
+        while(i < pivotIndex && pivotIndex > j){
+            while(arr[i] < pivot){
+                i++;
+            }
+            while(arr[j] > pivot){
+                j--;
+            }
+            if(i < pivotIndex && pivotIndex > j){
+                swap(arr, i++, j--);
+            }
+//            if(arr[i] > pivot && arr[j] < pivot ){
+//                swap(arr,i++ , j++);
+//            }
+//            else if(arr[i] > pivot){
+//                j--;
+//            }
+//            else{
+//                i++;
+//            }
+        }
+        return pivotIndex;
+    }
+
+    void quickSort(int[] arr,int s,int e){
+        if(s >= e){
+            return;
+        }
+        int p = partition(arr, s, e);
+
+        quickSort(arr, s, p-1);
+        quickSort(arr, p+1, e);
+
+    }
+    void sort(){
+        int n = arr.length;
+        quickSort(arr, 0, n-1);
+        for(int num : arr){
+            System.out.print(num + "  ");
+        }
+    }
+}
+
