@@ -1,0 +1,57 @@
+public class QuickSort {
+    private final int[] arr;
+    QuickSort(int[] arr){
+        this.arr = arr;
+    }
+
+    void swap(int[] arr, int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    int partition(int[] arr, int s, int e){
+
+        int pivotIndex = s;
+        int pivot = arr[pivotIndex];
+        int count = 0;
+        for(int i = s ; i <= e; i++){
+            if(arr[i] < pivot){
+                count++;
+            }
+        }
+        pivotIndex += count;
+        swap(arr, pivotIndex, s);
+        int i = s, j = e;
+        while(i < pivotIndex && pivotIndex > j){
+            while(arr[i] < pivot){
+                i++;
+            }
+            while(arr[j] > pivot){
+                j--;
+            }
+            if(i < pivotIndex && pivotIndex > j){
+                swap(arr, i++, j--);
+            }
+        }
+        return pivotIndex;
+    }
+
+    void quickSort(int[] arr,int s,int e){
+        if(s >= e){
+            return;
+        }
+        int p = partition(arr, s, e);
+
+        quickSort(arr, s, p-1);
+        quickSort(arr, p+1, e);
+
+    }
+    void sort(){
+        int n = arr.length;
+        quickSort(arr, 0, n-1);
+        for(int num : arr){
+            System.out.print(num + "  ");
+        }
+    }
+}
