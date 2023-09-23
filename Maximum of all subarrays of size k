@@ -1,0 +1,37 @@
+class Solution
+{
+    //Function to find maximum of each subarray of size k.
+    static ArrayList <Integer> max_of_subarrays(int arr[], int N, int K)
+    {
+        ArrayList <Integer> res = new ArrayList<>();
+        Deque<Integer> q = new LinkedList<Integer>();
+        int i = 0, j = i;
+        
+        while(j < N){
+            //calculations
+            while(!q.isEmpty() && arr[j] > q.peekLast()){
+                q.pollLast();
+            }
+            q.offer(arr[j]);
+            int winSize = j - i + 1;
+            // increment j till we get given window size
+            if(winSize < K){
+                j++;
+            }
+            //when we hit window size
+            else if(winSize == K){
+                //get ans from calculations
+                res.add(q.peek());
+                //remove from calculation
+                if(!q.isEmpty() && arr[i] == q.peek()){
+                    q.poll();
+                }
+                //slide window
+                i++;
+                j++;
+            }
+           
+        }
+        return res;
+    }
+}
