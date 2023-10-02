@@ -1,0 +1,19 @@
+class Solution{
+    static List<Integer> minPartition(int N)
+    {
+        List<Integer> res = new ArrayList<>();
+        int[] arr = new int[]{ 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 };
+        int n = arr.length;
+        int i = n-1;
+        while(i >= 0 || N != 0){
+            if(N >= arr[i]){
+                N-= arr[i];
+                res.add(arr[i]);
+            }
+            else{
+                i--;
+            }
+        }
+        return res;
+    }
+}
