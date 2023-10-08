@@ -1,0 +1,22 @@
+class Solution {
+    Node sortedInsert(Node head, int data) {
+        Node curr = head;
+        Node temp = new Node(data);
+        if(curr.data > data){
+            temp.next = curr;
+            return temp;
+        }
+        while(curr.next != null){
+            if((data > curr.data && data < curr.next.data) || (data == curr.data)){
+                temp.next = curr.next;
+                curr.next = temp;
+                return head;
+            }
+            curr = curr.next;
+        }
+        if(curr.data <= data){
+            curr.next = temp;
+        }
+        return head;
+    }
+}
