@@ -1,0 +1,16 @@
+class Solution {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        return sum(root, 0, targetSum);
+    }
+    boolean sum(TreeNode root, int currSum, int targetSum){
+        if(root == null){
+            return false;
+        }
+        if(root.left == null && root.right == null){
+            return currSum + root.val == targetSum;
+        }
+        return sum(root.left,currSum + root.val, targetSum) || sum(root.right, currSum + root.val, targetSum);
+
+    }
+    
+}
