@@ -1,0 +1,40 @@
+class Solution
+{
+    class Pair{
+        boolean a;
+        int b;
+        Pair(boolean a, int b){
+            this.a = a;
+            this.b = b;
+        }
+    }
+    
+    Pair sumTree(Node root){
+        if(root == null){
+            return new Pair(true, 0);
+        }
+        if (root.left == null && root.right == null) {
+            return new Pair(true, root.data);
+        }
+        Pair left = sumTree(root.left);
+        Pair right = sumTree(root.right);
+        
+        boolean leftIsSum = left.a;
+        boolean rigthIsSum = right.a;
+        boolean condn = (root.data == left.b + right.b);
+        Pair ans = new Pair(false, root.data);
+        if(leftIsSum && rigthIsSum && condn){
+            ans.a = true;
+            ans.b = root.data + left.b + right.b;
+        }
+        return ans;
+    }
+    
+	boolean isSumTree(Node root)
+	{
+	    if(root == null){
+	        return true;
+	    }
+        return sumTree(root).a;
+	}
+}
