@@ -1,0 +1,29 @@
+class Solution {
+    public TreeNode sortedListToBST(ListNode head) {
+        if(head == null){
+            return null;
+        }    
+        if(head.next == null){
+            return new TreeNode(head.val);
+        }
+        ListNode mid = findMid(head); //mid
+        TreeNode root = new TreeNode(mid.val);
+        root.left = sortedListToBST(head); // discontinued till mid - 1;
+        root.right = sortedListToBST(mid.next); // mid + 1 to end
+        return root;
+    }
+    public ListNode findMid(ListNode head){
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode prev = head;
+        while(fast != null && fast.next != null){
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        //discontinue the linked list, for root.left -> 0 to mid - 1;
+        prev.next = null;
+        return slow;
+        
+    }
+}
