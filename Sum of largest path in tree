@@ -1,0 +1,24 @@
+class Solution {
+    int maxLen = 0, maxSum = Integer.MIN_VALUE;
+    public void solve(Node root, int len, int sum) {
+        if (root == null) {
+            if (len > maxLen) {
+                maxLen = len;
+                maxSum = sum;
+            } else if (len == maxLen) {
+                maxSum = Math.max(maxSum, sum);
+            }
+            return;
+        }
+        sum = sum + root.data;
+        solve(root.left, len + 1, sum);
+        solve(root.right, len + 1, sum);
+    }
+
+    public int sumOfLongRootToLeafPath(Node root) {
+        int len = 0;
+        int sum = 0;
+        solve(root, len, sum);
+        return maxSum;
+    }
+}
