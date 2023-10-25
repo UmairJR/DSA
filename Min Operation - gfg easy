@@ -1,0 +1,27 @@
+// Two operations for making 0 to N: 1) Add one 2) Double the number 
+class Solution
+{
+    public int minOperation(int n)
+    {
+        if(n == 1) return 1;
+        int minOp = 0;
+        while(n != 0){
+            if(n % 2 == 0){
+                //divide in half
+                n /= 2;
+            }
+            else{
+                //Or subtract one
+                n--;
+            }
+            minOp++;
+        }
+        if(n == 0){
+            return minOp;
+        }
+        else{
+            //if n stuck at num 1, so increase 1 operation and return
+            return minOp+1;
+        }
+    }
+}
