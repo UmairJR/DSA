@@ -1,0 +1,28 @@
+class Solution
+{
+    static class Pair{
+        int a;
+        int b;
+        Pair(int a, int b){
+            this.a = a;
+            this.b = b;
+        }
+    }
+    static Pair helper(Node root){
+        if(root == null){
+            return new Pair(0,0);
+        }
+        Pair left = helper(root.left);
+        Pair right = helper(root.right);
+        Pair res = new Pair(0,0);
+        res.a = root.data + right.b + left.b;
+        res.b = Math.max(left.a, left.b) + Math.max(right.a, right.b);
+        return res;
+    }
+    //Function to return the maximum sum of non-adjacent nodes.
+    static int getMaxSum(Node root)
+    {
+        Pair res = helper(root);
+        return Math.max(res.a, res.b);
+    }
+}
