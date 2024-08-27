@@ -1,0 +1,20 @@
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        ArrayList<List<Integer>> plist = new ArrayList<>();
+        for(int i = 0; i <= rowIndex; i++){
+            ArrayList<Integer> row = new ArrayList<>();
+            for(int j = 0; j <= i; j++){
+            if(j==0 || j == i){
+                row.add(1);
+            }
+            else{
+                int sum = plist.get(i-1).get(j-1) + plist.get(i-1).get(j);
+                row.add(sum);
+            }
+        }
+        plist.add(row);
+        }
+
+        return plist.get(rowIndex);
+    }
+}
