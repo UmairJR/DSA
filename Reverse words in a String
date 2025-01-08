@@ -1,0 +1,12 @@
+class Solution {
+    public String reverseWords(String s) {
+        String res = "";
+        s = s.trim();
+        String[] arr = s.split("\\s+"); 
+        // \\s+ = single and also multiple spaces
+        for(String str: arr){
+            res = str + " " + res;
+        }
+        return res.trim();
+    }
+}
