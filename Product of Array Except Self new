@@ -1,0 +1,22 @@
+class Solution {
+    public int largestAltitude(int[] gain) {
+        int[] suff = new int[gain.length + 1];
+        suff[0] = 0;
+        suff[1] = gain[0];
+        for(int i = 2; i <= gain.length; i++){
+            suff[i] = suff[i-1] + gain[i-1];
+        }
+        int max = getMax(suff);
+        return max;
+    }
+
+    public int getMax(int[] arr){
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] > max){
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+}
