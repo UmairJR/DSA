@@ -1,0 +1,29 @@
+class Solution {
+    //worst approach - brute force
+    public List<Integer> getRow(int[][] grid, int i, int n){
+        List<Integer> rows = new ArrayList<>();
+        for(int j = 0; j < n; j++){
+            rows.add(grid[i][j]);
+        }
+        return rows;
+    }
+    public List<Integer> getColumn(int[][] grid, int j, int n){
+        List<Integer> columns = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            columns.add(grid[i][j]);
+        }
+        return columns;
+    }
+    public int equalPairs(int[][] grid) {
+        int count = 0;
+        int n = grid.length;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(getRow(grid,i,n).equals(getColumn(grid,j,n))){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
