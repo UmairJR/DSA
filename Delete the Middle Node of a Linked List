@@ -1,0 +1,23 @@
+class Solution {
+    public ListNode deleteMiddle(ListNode head) {
+        ListNode counter = head;
+        int count = 0;
+        while(counter != null){
+            counter = counter.next;
+            count++;
+        }   
+        ListNode curr = head; 
+        if(count == 1){
+            return curr.next;
+        }
+        int middle = (count/2) - 1;
+        count = 0;
+        while(count != middle){
+            curr = curr.next;
+            count++;
+        }
+        curr.next = curr.next.next;
+        return head;
+    }
+    
+}
