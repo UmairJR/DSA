@@ -1,0 +1,25 @@
+class Solution {
+    //find half
+    //reverse
+    //compute all sum
+    //output max sum
+    public int pairSum(ListNode head) {
+        int res = 0;
+        ListNode curr = head;
+        ListNode mid = head;
+        ListNode newList = null;
+        while(mid != null && mid.next != null){
+            mid = mid.next.next;
+            ListNode temp = curr.next;
+            curr.next = newList;
+            newList = curr;
+            curr = temp;
+        } 
+        while(curr != null){
+            res = Math.max(res, curr.val + newList.val);
+            curr = curr.next;
+            newList = newList.next;
+        }
+        return res;
+    }
+}
